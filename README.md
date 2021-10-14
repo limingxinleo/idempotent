@@ -20,8 +20,10 @@ use Idempotent\Idempotent;
 
 $container = ApplicationContext::getContainer();
 $id = 'create_order:1';
-$container->get(Idempotent::class)->run($id, static function(){
+$result = $container->get(Idempotent::class)->run($id, static function(){
     sleep(2);
     return uniqid();
 });
+
+var_dump($result);
 ```
