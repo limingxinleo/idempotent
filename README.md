@@ -1,5 +1,7 @@
-# component-creater
+# 幂等器
+
+## 安装
 
 ```
-composer create-project hyperf/component-creater
+composer require limingxinleo/idempotent
 ```

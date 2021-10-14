@@ -5,11 +5,14 @@ declare(strict_types=1);
  * This file is part of Hyperf.
  *
  * @link     https://www.hyperf.io
- * @document https://doc.hyperf.io
+ * @document https://hyperf.wiki
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
 namespace Idempotent;
+
+use Idempotent\Driver\DriverInterface;
+use Idempotent\Driver\RedisDriver;
 
 class ConfigProvider
 {
@@ -17,15 +20,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-            ],
-            'commands' => [
-            ],
-            'annotations' => [
-                'scan' => [
-                    'paths' => [
-                        __DIR__,
-                    ],
-                ],
+                DriverInterface::class => RedisDriver::class,
             ],
         ];
     }

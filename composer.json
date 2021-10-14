@@ -6,7 +6,7 @@
         "php",
         "hyperf"
     ],
-    "description": "",
+    "description": "Making multiple identical function calls has the same effect as making a single function call.",
     "autoload": {
         "psr-4": {
             "Idempotent\\": "src/"
@@ -18,16 +18,19 @@
         }
     },
     "require": {
-        "php": ">=7.3"
+        "php": ">=8.0",
+        "hyperf/utils": "^2.2",
+        "jetbrains/phpstorm-attributes": "^1.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
         "mockery/mockery": "^1.0",
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": ">=7.0",
-        "swoole/ide-helper": "^4.5",
-        "swow/swow": "dev-develop",
         "symfony/var-dumper": "^5.1"
+    },
+    "suggest": {
+        "ext-redis": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -41,6 +44,9 @@
         "cs-fix": "php-cs-fixer fix $1"
     },
     "extra": {
+        "branch-alias": {
+            "dev-main": "0.1-dev"
+        },
         "hyperf": {
             "config": "Idempotent\\ConfigProvider"
         }
