@@ -15,9 +15,9 @@ use JetBrains\PhpStorm\Pure;
 
 class Config
 {
-    protected string $prefix = 'i:l';
+    protected string $prefix = 'i:l:';
 
-    protected string $resultPrefix = 'i:r';
+    protected string $resultPrefix = 'i:r:';
 
     protected int $lockMilliseconds = 5000;
 

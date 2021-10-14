@@ -37,8 +37,8 @@ class RedisDriver implements DriverInterface
         return $result;
     }
 
-    public function set(string $key, string $result): void
+    public function set(string $key, string $result, int $lockMilliseconds): void
     {
-        $this->redis->set($key, $result);
+        $this->redis->set($key, $result, ['PX' => $lockMilliseconds]);
     }
 }

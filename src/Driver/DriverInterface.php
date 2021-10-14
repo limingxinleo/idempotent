@@ -26,5 +26,5 @@ interface DriverInterface
     /**
      * 保存数据.
      */
-    public function set(string $key, string $result): void;
+    public function set(string $key, string $result, int $lockMilliseconds): void;
 }

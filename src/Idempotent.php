@@ -59,7 +59,7 @@ class Idempotent
         }
 
         $result = $callable();
-        $this->driver->set($resultKey, $this->packer->pack($result));
+        $this->driver->set($resultKey, $this->packer->pack($result), $this->config->getLockMilliseconds());
         return $result;
     }
 
