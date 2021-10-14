@@ -21,7 +21,7 @@ class Config
 
     protected int $lockMilliseconds = 5000;
 
-    protected int $tryCount = 5;
+    protected int $tryCount = 10;
 
     protected int $waitMilliseconds = 300;
 

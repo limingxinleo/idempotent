@@ -14,7 +14,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php-version: ['8.0']
-        engine: ['none', 'swoole', 'swow']
+        engine: ['swoole', 'swow']
       max-parallel: 5
     steps:
       - name: Checkout
@@ -56,6 +56,11 @@ jobs:
           sudo make install
           sudo sh -c "echo extension=swow > /etc/php/${{ matrix.php-version }}/cli/conf.d/swow.ini"
           php --ri swow
+      - name: Setup Redis Server
+        run: docker run --name redis --restart always -p 6379:6379 -d redis
+      - name: Setup Swow
+        if: ${{ matrix.engine == 'swow' }}
+        run: composer require hyperf/engine-swow
       - name: Setup Packages
         run: composer update -o --no-scripts
       - name: Run Test Cases

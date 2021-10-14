@@ -23,9 +23,6 @@ class RedisDriver implements DriverInterface
         $this->redis = $redis;
     }
 
-    /**
-     * 是否获得锁
-     */
     public function lock(string $key, int $lockMilliseconds): bool
     {
         return $this->redis->set($key, '1', ['NX', 'PX' => $lockMilliseconds]) === true;

@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Idempotent;
 
 use Idempotent\Driver\DriverInterface;
-use Idempotent\Driver\RedisDriver;
+use Idempotent\Driver\RedisFactory;
 
 class ConfigProvider
 {
@@ -20,7 +20,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                DriverInterface::class => RedisDriver::class,
+                DriverInterface::class => RedisFactory::class,
             ],
         ];
     }

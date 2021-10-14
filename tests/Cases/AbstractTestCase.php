@@ -11,6 +11,8 @@ declare(strict_types=1);
  */
 namespace HyperfTest\Cases;
 
+use Idempotent\Driver\RedisDriver;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,4 +20,24 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class AbstractTestCase extends TestCase
 {
+    protected function tearDown(): void
+    {
+        Mockery::close();
+    }
+
+    public function newRedisDriver(): RedisDriver
+    {
+        $redis = new \Redis();
+        $redis->connect('127.0.0.1');
+        return new RedisDriver($redis);
+    }
+
+    public function runCoroutine(callable $callable)
+    {
+        if (extension_loaded('swoole')) {
+            \Swoole\Coroutine\run($callable);
+        } else {
+            $callable();
+        }
+    }
 }

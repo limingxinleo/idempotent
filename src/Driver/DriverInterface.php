@@ -13,9 +13,18 @@ namespace Idempotent\Driver;
 
 interface DriverInterface
 {
+    /**
+     * 是否获得锁
+     */
     public function lock(string $key, int $lockMilliseconds): bool;
 
+    /**
+     * 读取数据.
+     */
     public function get(string $key): ?string;
 
+    /**
+     * 保存数据.
+     */
     public function set(string $key, string $result): void;
 }
