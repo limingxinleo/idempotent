@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace Idempotent;
 
 use Hyperf\Contract\PackerInterface;
-use Hyperf\Utils\Packer\PhpSerializerPacker;
 use Idempotent\Driver\DriverInterface;
 use Idempotent\Exception\IdempotentException;
+use Idempotent\Serializer\PhpSerializerPacker;
 use JetBrains\PhpStorm\Pure;
 
 class Idempotent
