@@ -19,7 +19,7 @@
     },
     "require": {
         "php": ">=8.0",
-        "hyperf/utils": "^2.2",
+        "hyperf/utils": "^2.2|^3.0",
         "jetbrains/phpstorm-attributes": "^1.0"
     },
     "require-dev": {
