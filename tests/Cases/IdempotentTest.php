@@ -46,4 +46,30 @@ class IdempotentTest extends AbstractTestCase
             $this->assertTrue($runCount === 1);
         });
     }
+
+    public function testRunButThrowException()
+    {
+        $this->runCoroutine(function () {
+            $key = uniqid();
+            try {
+                $idempotent = new Idempotent($this->newRedisDriver());
+                $idempotent->run($key, static function () {
+                    throw new \RuntimeException('xxxx');
+                });
+                $this->assertTrue(false);
+            } catch (\Throwable $exception) {
+                $this->assertSame('xxxx', $exception->getMessage());
+            }
+
+            try {
+                $idempotent = new Idempotent($this->newRedisDriver());
+                $idempotent->run($key, static function () {
+                    throw new \RuntimeException('xxxx');
+                });
+                $this->assertTrue(false);
+            } catch (\Throwable $exception) {
+                $this->assertSame('xxxx', $exception->getMessage());
+            }
+        });
+    }
 }
