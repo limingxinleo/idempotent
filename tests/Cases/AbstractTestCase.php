@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace HyperfTest\Cases;
 
 use Idempotent\Driver\RedisDriver;
-use Mockery;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,7 +21,7 @@ abstract class AbstractTestCase extends TestCase
 {
     protected function tearDown(): void
     {
-        Mockery::close();
+        \Mockery::close();
     }
 
     public function newRedisDriver(): RedisDriver

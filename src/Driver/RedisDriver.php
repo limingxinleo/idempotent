@@ -28,6 +28,11 @@ class RedisDriver implements DriverInterface
         return $this->redis->set($key, '1', ['NX', 'PX' => $lockMilliseconds]) === true;
     }
 
+    public function del(string $key): bool
+    {
+        return (bool) $this->redis->del($key);
+    }
+
     public function get(string $key): ?string
     {
         $result = $this->redis->get($key);

@@ -19,6 +19,11 @@ interface DriverInterface
     public function lock(string $key, int $lockMilliseconds): bool;
 
     /**
+     * 删除锁
+     */
+    public function del(string $key): bool;
+
+    /**
      * 读取数据.
      */
     public function get(string $key): ?string;

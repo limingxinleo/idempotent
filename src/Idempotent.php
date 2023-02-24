@@ -58,7 +58,12 @@ class Idempotent
             throw IdempotentException::tryCount();
         }
 
-        $result = $callable();
+        try {
+            $result = $callable();
+        } catch (\Throwable $exception) {
+            $this->driver->del($lockKey);
+            throw $exception;
+        }
         $this->driver->set($resultKey, $this->packer->pack($result), $this->config->getLockMilliseconds());
         return $result;
     }
